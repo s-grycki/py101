@@ -1,0 +1,35 @@
+{
+  "en": {
+    "invalid_number": "Hmm... that doesn't look like a valid number.",
+    "operation": "What operation would you like to perform?\n 1) Add 2) Subtract 3) Multiply 4) Divide ",
+    "invalid_operator": "You must choose 1, 2, 3, or 4",
+    "zero_error": "Cannot divide by 0",
+    "do_again": "Would you like to do another calculation? ",
+    "welcome": "Welcome to Calculator!",
+    "bye": "Thank You for Using Calculator. Goodbye!",
+    "add": "The result is: ${number1} + ${number2}",
+    "subtract": "The result is: {number1 - number2}",
+    "multiply": "The result is: {number1 * number2}",
+    "divide": "The result is: {number1 / number2}"
+  },
+  "sp": {
+    "invalid_number": "Hmm... ese no parece un número válido.",
+    "operation": "¿Qué operación te gustaría realizar?\n 1) Sumar 2) Restar 3) Multiplicar 4) Dividir",
+    "invalid_operator": "Debes elegir 1, 2, 3 o 4",
+    "zero_error": "No se puede dividir por 0",
+    "do_again": "¿Quieres hacer otro cálculo?",
+    "welcome": "¡Bienvenido a Calculadora!",
+    "bye": "Gracias por usar la calculadora. ¡Adiós!"
+  },
+  "fr": {
+    "invalid_number": "Hmm... cela ne ressemble pas à un numéro valide.",
+    "operation": "Quelle opération souhaitez-vous effectuer ?\n 1) Ajouter 2) Soustraire 3) Multiplier 4) Diviser",
+    "invalid_operator": "Vous devez choisir 1, 2, 3 ou 4",
+    "zero_error": "Impossible de diviser par 0",
+    "do_again": "Souhaitez-vous faire un autre calcul ?",
+    "welcome": "Bienvenue sur Calculatrice !",
+    "bye": "Merci d'utiliser la calculatrice. Au revoir!"
+  }
+}
+
+

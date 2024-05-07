@@ -11,6 +11,12 @@
 # Else, exit program with message
 
 import pdb
+import json
+
+with open('calculator.json', 'r') as file:
+    data = json.load(file)
+
+LANG = 'en'
 
 # Function Declarations
 def print_prompt(message):
@@ -24,19 +30,18 @@ def get_number(order):
         number = input_prompt(f"What's the {order} number? ")
 
         if invalid_number(number):
-            print_prompt("Hmm... that doesn't look like a valid number.")
+            print_prompt(data[LANG]['invalid_number'])
         else:
             return float(number)
 
 def get_operator():
     while True:
-        operation = input_prompt('What operation would you like to perform?\n'
-                                 '1) Add 2) Subtract 3) Multiply 4) Divide ')
+        operation = input_prompt(data[LANG]['operation'])
         
         if invalid_operator(operation):
-            print_prompt('You must choose 1, 2, 3, or 4')
+            print_prompt(data[LANG]['invalid_operator'])
         elif zero_division(operation):
-            print_prompt('Cannot divide by 0') 
+            print_prompt(data[LANG]['zero_error']) 
         else:
             return operation
 
@@ -66,11 +71,11 @@ def calculation():
             print_prompt(f'The result is: {number1 / number2}')
 
 def calculate_again():
-    answer = input_prompt('Would you like to do another calculation? ').lower()
+    answer = input_prompt(data[LANG]['do_again']).lower()
     return True if answer in ['y', 'yes'] else False
 
 # Main Body
-print_prompt('Welcome to Calculator!')
+print_prompt(data[LANG]['welcome'])
 
 while True:
     number1 = get_number('first')
@@ -83,4 +88,4 @@ while True:
     else:
         break
 
-print_prompt('Thank You for Using Calculator. Goodbye!')
+print_prompt(data[LANG]['bye'])
