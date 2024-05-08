@@ -6,11 +6,7 @@
     "zero_error": "Cannot divide by 0",
     "do_again": "Would you like to do another calculation? ",
     "welcome": "Welcome to Calculator!",
-    "bye": "Thank You for Using Calculator. Goodbye!",
-    "add": "The result is: ${number1} + ${number2}",
-    "subtract": "The result is: {number1 - number2}",
-    "multiply": "The result is: {number1 * number2}",
-    "divide": "The result is: {number1 / number2}"
+    "bye": "Thank You for Using Calculator. Goodbye!"
   },
   "sp": {
     "invalid_number": "Hmm... ese no parece un número válido.",

@@ -12,6 +12,7 @@
 
 import pdb
 import json
+import os
 
 with open('calculator.json', 'r') as file:
     data = json.load(file)
@@ -24,6 +25,12 @@ def print_prompt(message):
 
 def input_prompt(message):
     return input(f'==> {message}')
+
+def reset_screen():
+    if os.name == 'nt':
+        os.system("cls")
+    else:
+        os.system("clear")
 
 def get_number(order):
     while True:
@@ -41,7 +48,7 @@ def get_operator():
         if invalid_operator(operation):
             print_prompt(data[LANG]['invalid_operator'])
         elif zero_division(operation):
-            print_prompt(data[LANG]['zero_error']) 
+            print_prompt(data[LANG]['zero_error'])
         else:
             return operation
 
@@ -84,6 +91,7 @@ while True:
     calculation()
 
     if calculate_again():
+        reset_screen()
         continue
     else:
         break
