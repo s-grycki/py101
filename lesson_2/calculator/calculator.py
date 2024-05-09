@@ -1,30 +1,30 @@
-# Welcome the user and give config operations
-# Ask the user for the first number
-# Check if valid numeric
-# Ask the user for the second number
-# Check if valid numeric
-# Ask the user for an operation to perform
-# Check if valid operator
-# Perform the operation on the two numbers
-# Print the result to the terminal as float
-# Ask if user wants another calculation. Ask for first number if yes
-# Else, exit program with message
+# zero_division should now be handled when getting the second number
 
+# Libraries
 import pdb
 import json
 import os
+import operator
+import math
 
+# Json File
 with open('calculator.json', 'r') as file:
     data = json.load(file)
 
-LANG = 'en'
-
 # Function Declarations
 def print_prompt(message):
+    message = format_message(message)
     print(f'==> {message}')
 
 def input_prompt(message):
-    return input(f'==> {message}')
+    message = format_message(message)
+    return input(f'==> {message}').lower()
+
+def format_message(message):
+    if type(message) is list:
+        return '\n==> '.join(message) + '\n==> '
+    else:
+        return message + '\n==> '
 
 def reset_screen():
     if os.name == 'nt':
@@ -34,21 +34,19 @@ def reset_screen():
 
 def get_number(order):
     while True:
-        number = input_prompt(f"What's the {order} number? ")
+        number = input_prompt(current_lang(order))
 
         if invalid_number(number):
-            print_prompt(data[LANG]['invalid_number'])
+            print_prompt(current_lang('invalid_number'))
         else:
             return float(number)
 
 def get_operator():
     while True:
-        operation = input_prompt(data[LANG]['operation'])
-        
+        operation = input_prompt(current_lang('operation'))
+
         if invalid_operator(operation):
-            print_prompt(data[LANG]['invalid_operator'])
-        elif zero_division(operation):
-            print_prompt(data[LANG]['zero_error'])
+            print_prompt(current_lang('invalid_operator'))
         else:
             return operation
 
@@ -61,39 +59,94 @@ def invalid_number(number_str):
     return False
 
 def invalid_operator(operation):
-    return operation not in ['1', '2', '3', '4']
+    return operation not in data['operators']['valid']
 
-def zero_division(operation):
-    return operation == '4' and number2 == 0
+def calculation(operation, number1, number2):
+    if operation == '4' and number2 == 0: # Handles dividing by 0
+        print_prompt(current_lang('zero_error'))
+    elif number2:
+        operation = getattr(operator, data['operators'][operation])
+        print_prompt((current_lang('answer') +
+        calculate_answer(operation, number1, number2)))
+    else:
+        operation = getattr(math, data['operators'][operation])
+        print_prompt((current_lang('answer') +
+        calculate_answer(operation, number1)))
 
-def calculation():
-    match operation:
-        case '1':
-            print_prompt(f'The result is: {number1 + number2}')
-        case '2':
-            print_prompt(f'The result is: {number1 - number2}')
-        case '3':
-            print_prompt(f'The result is: {number1 * number2}')
-        case '4':
-            print_prompt(f'The result is: {number1 / number2}')
+def calculate_answer(operation, number1, number2 = False):
+    if number2:
+        answer = operation(number1, number2)
+        return str(round(answer, data['round_value']))
+    else:
+        answer = operation(number1)
+        return str(round(answer, data['round_value']))
 
 def calculate_again():
-    answer = input_prompt(data[LANG]['do_again']).lower()
-    return True if answer in ['y', 'yes'] else False
+    answer = input_prompt(current_lang('do_again'))
+    return True if answer in current_lang('yes') else False
+
+def play():
+    while True:
+        reset_screen()
+        print_prompt(current_lang('welcome'))
+        answer = input_prompt(current_lang('config'))
+
+        if answer in (current_lang('valid_round')):
+            change_rounding()
+        elif answer in (current_lang('valid_lang')):
+            change_lang()
+        else:
+            break
+
+    main_loop()
+
+def change_rounding():
+    while True:
+        answer = input_prompt((current_lang('change_rounding')))
+
+        try:
+            int(answer)
+        except ValueError:
+            print_prompt((current_lang('invalid_number')))
+        else:
+            data['round_value'] = abs(int(answer))
+            break
+
+def current_round(msg):
+    return data[(data['round_value'])][msg]
+
+def change_lang():
+    while True:
+        answer = input_prompt(current_lang('change_lang'))
+
+        if answer in data['languages']:
+            data['lang_value'] = answer
+            break
+        else:
+            print_prompt(current_lang('lang_error'))
+
+def current_lang(msg):
+    return data[(data['lang_value'])][msg]
+
+def main_loop():
+    while True:
+        operation = get_operator()
+        number1 = get_number('first')
+
+        if operation in data['operators']['valid'][:5]:
+            number2 = get_number('second')
+        else:
+            number2 = False
+
+        calculation(operation, number1, number2)
+
+        if calculate_again():
+            reset_screen()
+            continue
+        else:
+            break
+
+    print_prompt(current_lang('bye'))
 
 # Main Body
-print_prompt(data[LANG]['welcome'])
-
-while True:
-    number1 = get_number('first')
-    number2 = get_number('second')
-    operation = get_operator()
-    calculation()
-
-    if calculate_again():
-        reset_screen()
-        continue
-    else:
-        break
-
-print_prompt(data[LANG]['bye'])
+play()

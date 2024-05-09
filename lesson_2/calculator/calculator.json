@@ -1,31 +1,99 @@
 {
   "en": {
     "invalid_number": "Hmm... that doesn't look like a valid number.",
-    "operation": "What operation would you like to perform?\n 1) Add 2) Subtract 3) Multiply 4) Divide ",
-    "invalid_operator": "You must choose 1, 2, 3, or 4",
+    "operation": [
+      "What operation would you like to perform?",
+      "1) Add 2) Subtract 3) Multiply 4) Divide 5) Power",
+      "6) exponent 7) log 8) sqaure root 9) cube root "],
+    "invalid_operator": "You must choose 1 - 9",
     "zero_error": "Cannot divide by 0",
     "do_again": "Would you like to do another calculation? ",
+    "yes": ["y", "yes"],
     "welcome": "Welcome to Calculator!",
-    "bye": "Thank You for Using Calculator. Goodbye!"
+    "bye": "Thank You for Using Calculator. Goodbye!",
+    "config": [
+      "Enter r/round to change rounding",
+      "Enter l/lang to change language",
+      "Enter any other key to continue"],
+    "valid_round": ["r", "round"],
+    "valid_lang": ["l", "lang"],
+    "change_rounding": "Please enter an integer to round by ",
+    "change_lang": [
+      "Please enter a language",
+      "en for English, es for Spanish, fr for French"],
+    "lang_error": "Hmm... that doesn't look like a valid language.",
+    "answer": "The result is: ",
+    "first": "What's the first number?",
+    "second": "What's the second number?"
   },
-  "sp": {
+  "es": {
     "invalid_number": "Hmm... ese no parece un número válido.",
-    "operation": "¿Qué operación te gustaría realizar?\n 1) Sumar 2) Restar 3) Multiplicar 4) Dividir",
-    "invalid_operator": "Debes elegir 1, 2, 3 o 4",
+    "operation": ["¿Qué operación te gustaría realizar?",
+    "1) Sumar 2) Restar 3) Multiplicar 4) Dividir 5) Potencia",
+    "6) exponente 7) log 8) raíz cuadrada 9) raíz cúbica "],
+    "invalid_operator": "Debes elegir 1 - 9",
     "zero_error": "No se puede dividir por 0",
     "do_again": "¿Quieres hacer otro cálculo?",
+    "yes": ["s", "si"],
     "welcome": "¡Bienvenido a Calculadora!",
-    "bye": "Gracias por usar la calculadora. ¡Adiós!"
+    "bye": "Gracias por usar la calculadora. ¡Adiós!",
+    "config": [
+      "Ingrese r/ronda para cambiar el redondeo",
+      "Ingrese i/idioma para cambiar el idioma",
+      "Ingrese cualquier otra clave para continuar"],
+    "valid_round": ["r", "ronda"],
+    "valid_lang": ["i", "idioma"],
+    "change_rounding": "Por favor ingresa un número entero para redondear",
+    "change_lang": [
+      "Por favor ingrese un idioma",
+      "en para inglés, es para español, fr para francés"],
+    "lang_error": "Hmm... ese no parece un lenguaje válido.",
+    "answer": "El resultado es: ",
+    "first": "¿cual es el primer numero?",
+    "second": "¿cual es el segundo numero?"
   },
   "fr": {
     "invalid_number": "Hmm... cela ne ressemble pas à un numéro valide.",
-    "operation": "Quelle opération souhaitez-vous effectuer ?\n 1) Ajouter 2) Soustraire 3) Multiplier 4) Diviser",
-    "invalid_operator": "Vous devez choisir 1, 2, 3 ou 4",
+    "operation": [
+      "Quelle opération souhaitez-vous effectuer ?",
+      "1) Ajouter 2) Soustraire 3) Multiplier 4) Diviser 5) Puissance",
+      "6) exposant 7) log 8) racine carrée 9) racine cubique "],
+    "invalid_operator": "Vous devez choisir entre 1 et 9",
     "zero_error": "Impossible de diviser par 0",
     "do_again": "Souhaitez-vous faire un autre calcul ?",
+    "yes": ["o", "oui"],
     "welcome": "Bienvenue sur Calculatrice !",
-    "bye": "Merci d'utiliser la calculatrice. Au revoir!"
-  }
+    "bye": "Merci d'utiliser la calculatrice. Au revoir!",
+    "config": [
+      "Entrez r/round pour modifier l'arrondi",
+      "Entrez l/lang pour changer de langue",
+      "Entrez n'importe quelle autre clé pour continuer"],
+    "valid_round": ["r", "round"],
+    "valid_lang": ["l", "lang"],
+    "change_rounding": "Veuillez saisir un nombre entier pour arrondir",
+    "change_lang": [
+      "Veuillez saisir une langue",
+      "en pour l'anglais, es pour l'espagnol, fr pour le français"],
+    "lang_error": "Hmm... cela ne ressemble pas à une langue valide.",
+    "answer": "Le résultat est: ",
+    "first": "quel est le premier chiffre ?",
+    "second": "quel est le deuxième chiffre ?"
+  },
+  "operators": {
+    "valid": ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
+    "1": "add",
+    "2": "sub",
+    "3": "mul",
+    "4": "truediv",
+    "5": "pow",
+    "6": "exp",
+    "7": "log",
+    "8": "sqrt",
+    "9": "cbrt"
+  },
+  "languages": ["en", "es", "fr"],
+  "round_value": 2,
+  "lang_value": "en"
 }
 
 
