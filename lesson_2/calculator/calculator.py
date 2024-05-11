@@ -111,7 +111,12 @@ def reset_screen():
 # <============ VALIDATION FUNCTIONS ============>
 # Checks if program wants to take log of number less than 1
 def invalid_unary_calculation(number1, operation):
-    return operation in ['log', 'sqrt'] and number1 < 1
+    if operation == 'sqrt' and number1 < 0:
+        return True
+    elif operation == 'log' and number1 < 1:
+        return True
+    else:
+        return False
 
 # Checks if program wants to divide by 0
 def zero_division(number2, operation):
@@ -204,7 +209,7 @@ def main_program():
         print_prompt(get_current_lang('zero_error'))
         number2 = get_number('second')
 
-    while invalid_unary_calculation(number1, operation): # Negative logs/sqrts
+    while invalid_unary_calculation(number1, operation): # logs/sqrts
         print_prompt(get_current_lang('unary_calculation_error'))
         number1 = get_number('single_value')
 

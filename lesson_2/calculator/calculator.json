@@ -23,11 +23,13 @@
       "en for English, es for Spanish, fr for French"],
     "lang_error": "Hmm... that doesn't look like a valid language.",
     "round_error": "Hmm... that doesn't look like a valid rounding number",
-    "unary_calculation_error": "Can only calculate log/square root of positive numbers",
+    "unary_calculation_error": [
+      "Can only calculate log of positive numbers",
+      "And square root of numbers greater than or equal to 0"],
     "answer": "The result is: ",
     "first": "What's the first number?",
     "second": "What's the second number?",
-    "single_value": "Please enter a valid number",
+    "single_value": "Please enter a number to calculate",
     "current_round": "The current round is "
   },
   "es": {
@@ -53,11 +55,13 @@
       "en para inglés, es para español, fr para francés"],
     "lang_error": "Hmm... ese no parece un lenguaje válido.",
     "round_error": "Hmm... ese no parece un número de redondeo válido",
-    "unary_calculation_error": "Sólo se puede calcular log/raíz cuadrada de números positivos",
+    "unary_calculation_error": [
+      "Sólo se puede calcular el registro de números positivos",
+      "Y raíz cuadrada de números mayores o iguales a 0"],
     "answer": "El resultado es: ",
     "first": "¿cual es el primer numero?",
     "second": "¿cual es el segundo numero?",
-    "single_value": "Por favor ingrese un número valido",
+    "single_value": "Por favor ingrese un número para calcular",
     "current_round": "La ronda actual es "
   },
   "fr": {
@@ -84,11 +88,13 @@
       "en pour l'anglais, es pour l'espagnol, fr pour le français"],
     "lang_error": "Hmm... cela ne ressemble pas à une langue valide.",
     "round_error": "Hmm... cela ne ressemble pas à un nombre arrondi valide",
-    "unary_calculation_error": "Peut uniquement calculer le log/racine carrée des nombres positifs",
+    "unary_calculation_error": [
+      "Peut uniquement calculer le journal des nombres positifs",
+      "Et racine carrée des nombres supérieurs ou égaux à 0"],
     "answer": "Le résultat est: ",
     "first": "quel est le premier chiffre ?",
     "second": "quel est le deuxième chiffre ?",
-    "single_value": "S'il vous plait, entrez un nombre valide",
+    "single_value": "S'il vous plait, entrer un nombre pour calculer",
     "current_round": "Le tour en cours est "
   }
 }
