@@ -4,7 +4,7 @@
     "operation": [
       "What operation would you like to perform?",
       "1) Add 2) Subtract 3) Multiply 4) Divide 5) Power",
-      "6) exponent 7) log 8) sqaure root 9) cube root"],
+      "6) exponent 7) log 8) square root 9) cube root"],
     "invalid_operator": "You must choose 1 - 9",
     "zero_error": "Cannot divide by 0",
     "do_again": "Would you like to do another calculation? (y/yes)",
@@ -17,15 +17,18 @@
       "Enter any other key to continue"],
     "valid_round": ["r", "round"],
     "valid_lang": ["l", "lang"],
-    "change_rounding": "Please enter an integer to round by",
+    "change_rounding": "Please enter an integer to round by (max 20)",
     "change_lang": [
       "Please enter a language",
       "en for English, es for Spanish, fr for French"],
     "lang_error": "Hmm... that doesn't look like a valid language.",
-    "answer": "The result is:",
+    "round_error": "Hmm... that doesn't look like a valid rounding number",
+    "unary_calculation_error": "Can only calculate log/square root of positive numbers",
+    "answer": "The result is: ",
     "first": "What's the first number?",
     "second": "What's the second number?",
-    "current_round": "The current round is"
+    "single_value": "Please enter a valid number",
+    "current_round": "The current round is "
   },
   "es": {
     "invalid_number": "Hmm... ese no parece un número válido.",
@@ -44,15 +47,18 @@
       "Ingrese cualquier otra clave para continuar"],
     "valid_round": ["r", "ronda"],
     "valid_lang": ["i", "idioma"],
-    "change_rounding": "Por favor ingresa un número entero para redondear",
+    "change_rounding": "Por favor ingresa un número entero para redondear (máximo 20)",
     "change_lang": [
       "Por favor ingrese un idioma",
       "en para inglés, es para español, fr para francés"],
     "lang_error": "Hmm... ese no parece un lenguaje válido.",
-    "answer": "El resultado es:",
+    "round_error": "Hmm... ese no parece un número de redondeo válido",
+    "unary_calculation_error": "Sólo se puede calcular log/raíz cuadrada de números positivos",
+    "answer": "El resultado es: ",
     "first": "¿cual es el primer numero?",
     "second": "¿cual es el segundo numero?",
-    "current_round": "La ronda actual es"
+    "single_value": "Por favor ingrese un número valido",
+    "current_round": "La ronda actual es "
   },
   "fr": {
     "invalid_number": "Hmm... cela ne ressemble pas à un numéro valide.",
@@ -72,32 +78,19 @@
       "Entrez n'importe quelle autre clé pour continuer"],
     "valid_round": ["r", "round"],
     "valid_lang": ["l", "lang"],
-    "change_rounding": "Veuillez saisir un nombre entier pour arrondir",
+    "change_rounding": "Veuillez saisir un nombre entier pour arrondir (maximum 20)",
     "change_lang": [
       "Veuillez saisir une langue",
       "en pour l'anglais, es pour l'espagnol, fr pour le français"],
     "lang_error": "Hmm... cela ne ressemble pas à une langue valide.",
-    "answer": "Le résultat est:",
+    "round_error": "Hmm... cela ne ressemble pas à un nombre arrondi valide",
+    "unary_calculation_error": "Peut uniquement calculer le log/racine carrée des nombres positifs",
+    "answer": "Le résultat est: ",
     "first": "quel est le premier chiffre ?",
     "second": "quel est le deuxième chiffre ?",
-    "current_round": "Le tour en cours est"
-  },
-  "operators": {
-    "valid": ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
-    "binary": ["add", "sub", "mul", "truediv", "pow"],
-    "1": "add",
-    "2": "sub",
-    "3": "mul",
-    "4": "truediv",
-    "5": "pow",
-    "6": "exp",
-    "7": "log",
-    "8": "sqrt",
-    "9": "cbrt"
-  },
-  "languages": ["en", "es", "fr"],
-  "round_value": 2,
-  "lang_value": "en"
+    "single_value": "S'il vous plait, entrez un nombre valide",
+    "current_round": "Le tour en cours est "
+  }
 }
 
 
