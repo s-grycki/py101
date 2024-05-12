@@ -1,0 +1,18 @@
+{
+  "welcome": "Welcome to the loan calculator!",
+  "loan_amount": "Please enter the full amount of the loan",
+  "rate_amount": "Please enter your annual percentage rate",
+  "year_amount": [
+    "Please enter how many years your loan is for (0-99)",
+    "Please disregard months for now"],
+  "month_amount": [
+    "Please enter how many months your loan is for (0-11)",
+    "Please enter at least 1 if you answered 0 years"
+  ],
+  "amount_error": "Please enter a valid number greater than 0",
+  "rate_error": "Please enter a valid number of at least 0",
+  "year_error": "Please enter a valid number of years",
+  "month_error": "Please enter a valid number of years",
+  "do_again": "Would you like to do another calculation?",
+  "goodbye": "Thank you for using the loan calculator. Goodbye!"
+}
