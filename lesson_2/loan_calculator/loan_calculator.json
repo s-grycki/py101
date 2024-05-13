@@ -12,7 +12,7 @@
   "amount_error": "Please enter a valid number greater than 0",
   "rate_error": "Please enter a valid number of at least 0",
   "year_error": "Please enter a valid number of years",
-  "month_error": "Please enter a valid number of years",
-  "do_again": "Would you like to do another calculation?",
+  "month_error": "Please enter a valid number of months",
+  "do_again": "Would you like to do another calculation? (y/yes)",
   "goodbye": "Thank you for using the loan calculator. Goodbye!"
 }

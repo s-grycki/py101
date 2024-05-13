@@ -1,6 +1,7 @@
 # Libraries
 import json
 import os
+from time import sleep
 
 # Json File
 with open('loan_calculator.json', 'r') as file:
@@ -9,6 +10,7 @@ with open('loan_calculator.json', 'r') as file:
 # Global Constants
 MONTHS_IN_YEAR = 12
 MIN_INPUT = 0
+MAX_BORROW = 1_000_000_000_000
 
 # <============ MESSAGE FUNCTIONS ============>
 def reset_screen():
@@ -44,6 +46,17 @@ def print_result(amount, rate, years, months, payment):
     print_prompt(f'Your monthly payment is: ${payment}')
 
 # <============ DATA RETRIEVAL FUNCTIONS ============>
+def get_loan_information():
+    reset_screen()
+    amount = get_loan_amount()
+    reset_screen()
+    yearly_rate = get_yearly_rate()
+    reset_screen()
+    years = get_years()
+    months = get_months(years)
+    reset_screen()
+    return (amount, yearly_rate, years, months)
+
 def get_loan_amount():
     while True:
         amount = input_prompt(MESSAGES['loan_amount']).strip('$')
@@ -52,6 +65,7 @@ def get_loan_amount():
         if valid_loan_amount(amount):
             return round(float(amount), 2)
 
+        reset_screen()
         print_prompt(MESSAGES['amount_error'])
 
 def get_yearly_rate():
@@ -61,6 +75,7 @@ def get_yearly_rate():
         if valid_rate(rate):
             return float(rate)
 
+        reset_screen()
         print_prompt(MESSAGES['rate_error'])
 
 def get_years():
@@ -70,6 +85,7 @@ def get_years():
         if valid_year_amount(years):
             return int(years)
 
+        reset_screen()
         print_prompt(MESSAGES['year_error'])
 
 def get_months(years):
@@ -79,6 +95,7 @@ def get_months(years):
         if valid_month_amount(months) and valid_duration(years, months):
             return int(months)
 
+        reset_screen()
         print_prompt(MESSAGES['month_error'])
 
 def calculate_again():
@@ -92,7 +109,7 @@ def valid_loan_amount(amount):
     except ValueError:
         return False
 
-    if amount <= MIN_INPUT:
+    if amount <= MIN_INPUT or amount >= MAX_BORROW:
         return False
 
     return True
@@ -103,7 +120,7 @@ def valid_rate(rate):
     except ValueError:
         return False
 
-    if rate < MIN_INPUT:
+    if rate not in range(0, 100):
         return False
 
     return True
@@ -151,16 +168,10 @@ def calculate_payments(amount, rate, duration):
 # <============ MAIN PROGRAM LOGIC ============>
 def start():
     print_prompt(MESSAGES['welcome'])
+    sleep(3)
 
     while True:
-        amount = get_loan_amount()
-        reset_screen()
-        yearly_rate = get_yearly_rate()
-        reset_screen()
-        years = get_years()
-        months = get_months(years)
-        reset_screen()
-
+        amount, yearly_rate, years, months = get_loan_information() 
         duration = calculate_total_months(years, months)
         monthly_rate = calculate_monthly_rate(yearly_rate)
         monthly_payment = calculate_payments(amount, monthly_rate, duration)
