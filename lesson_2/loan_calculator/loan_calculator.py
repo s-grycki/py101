@@ -11,6 +11,7 @@ with open('loan_calculator.json', 'r') as file:
 MONTHS_IN_YEAR = 12
 MIN_INPUT = 0
 MAX_BORROW = 1_000_000_000_000
+MAX_RATE = 100
 
 # <============ MESSAGE FUNCTIONS ============>
 def reset_screen():
@@ -46,23 +47,13 @@ def print_result(amount, rate, years, months, payment):
     print_prompt(f'Your monthly payment is: ${payment}')
 
 # <============ DATA RETRIEVAL FUNCTIONS ============>
-def get_loan_information():
-    reset_screen()
-    amount = get_loan_amount()
-    reset_screen()
-    yearly_rate = get_yearly_rate()
-    reset_screen()
-    years = get_years()
-    months = get_months(years)
-    reset_screen()
-    return (amount, yearly_rate, years, months)
-
 def get_loan_amount():
     while True:
         amount = input_prompt(MESSAGES['loan_amount']).strip('$')
         amount = amount.replace(',', '')
 
         if valid_loan_amount(amount):
+            reset_screen()
             return round(float(amount), 2)
 
         reset_screen()
@@ -73,6 +64,7 @@ def get_yearly_rate():
         rate = input_prompt(MESSAGES['rate_amount']).strip('%')
 
         if valid_rate(rate):
+            reset_screen()
             return float(rate)
 
         reset_screen()
@@ -93,6 +85,7 @@ def get_months(years):
         months = input_prompt(MESSAGES['month_amount'])
 
         if valid_month_amount(months) and valid_duration(years, months):
+            reset_screen()
             return int(months)
 
         reset_screen()
@@ -120,7 +113,7 @@ def valid_rate(rate):
     except ValueError:
         return False
 
-    if rate not in range(0, 100):
+    if rate < MIN_INPUT or rate > MAX_RATE:
         return False
 
     return True
@@ -158,7 +151,10 @@ def calculate_total_months(years, months):
 def calculate_monthly_rate(yearly_rate):
     return (yearly_rate / 100) / MONTHS_IN_YEAR
 
-def calculate_payments(amount, rate, duration):
+def calculate_payments(amount, yearly_rate, years, months):
+    duration = calculate_total_months(years, months)
+    rate = calculate_monthly_rate(yearly_rate)
+
     if rate == 0: # Allows for 0 interest calculation without error
         monthly_payment = amount / duration
     else:
@@ -171,10 +167,13 @@ def start():
     sleep(3)
 
     while True:
-        amount, yearly_rate, years, months = get_loan_information() 
-        duration = calculate_total_months(years, months)
-        monthly_rate = calculate_monthly_rate(yearly_rate)
-        monthly_payment = calculate_payments(amount, monthly_rate, duration)
+        reset_screen()
+        amount = get_loan_amount()
+        yearly_rate = get_yearly_rate()
+        years = get_years()
+        months = get_months(years)
+
+        monthly_payment = calculate_payments(amount, yearly_rate, years, months)
 
         print_result(amount, yearly_rate, years, months, monthly_payment)
 
