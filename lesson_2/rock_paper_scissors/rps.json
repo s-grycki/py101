@@ -1,0 +1,33 @@
+{
+  "welcome": "Welcome to rpsls",
+  "opponent": "Your opponent today is",
+  "need_rules": "Would you like to see the rules? (y/yes)",
+  "rules": [
+    "",
+    "MOVES:",
+    "spock(sp), scissors(s), rock(r), paper(p), and lizard(l)",
+    "",
+    "WINNING CONDITIONS:",
+    "Spock > scissors and rock",
+    "Scissors > lizard and paper",
+    "Rock > scissors and lizard",
+    "Paper > rock and spock",
+    "Lizard > paper and spock",
+    "",
+    "Enter h/help anytime during game to see this again",
+    "Enter q!/quit! anytime during game to exit the game",
+    "Press enter to continue onto game"
+  ],
+  "name": "Please enter your name",
+  "target": "Please enter a round win target (1-10):",
+  "move": "Please enter Spock(sp), Scissors(s), Rock(r), Paper(p), or Lizard(l):",
+  "draw": "It's a draw!",
+  "player_win": "You win!",
+  "comp_win": "Computer wins!",
+  "play_again": "Would you like to play again? (y/yes) or (n/no)",
+  "invalid_name": "Please enter a name of letters less than 50 characters",
+  "invalid_target": "Please enter a valid win target",
+  "invalid_move": "Please enter a valid move",
+  "invalid_play_again": "Please answer yes or no",
+  "goodbye": "Thank you for playing rock, paper, scissors, lizard, spock!"
+}
