@@ -9,11 +9,11 @@ with open('rps.json', 'r') as file:
     MESSAGES = json.load(file)
 
 # Global Constants
-OPTIONS = ('scissors', 'spock', 'lizard', 'rock', 'paper')
+MOVES = ('scissors', 'spock', 'lizard', 'rock', 'paper')
 HELP = ('h', 'H', 'help', 'HELP')
 QUIT = ('q!', 'Q!', 'quit!', 'QUIT!')
-SHORT_OPTIONS = ('s', 'sp', 'l', 'r', 'p')
-MOVE_MAP = {
+SHORT_MOVES = ('s', 'sp', 'l', 'r', 'p')
+WINNING_CONDITIONS = {
     'scissors': ('lizard', 'paper'),
     'spock': ('scissors', 'rock'),
     'lizard': ('paper', 'spock'),
@@ -116,9 +116,9 @@ def get_user_move(game_data):
     while True:
         move = input_prompt(MESSAGES['move'])
 
-        if move in OPTIONS:
+        if move in MOVES:
             return move
-        if move in SHORT_OPTIONS:
+        if move in SHORT_MOVES:
             return convert_move(move)
 
         if move in HELP:
@@ -129,7 +129,19 @@ def get_user_move(game_data):
             show_invalid_move(game_data)
 
 def get_comp_move():
-    return choice(OPTIONS)
+    return choice(MOVES)
+
+def play_again():
+    while True:
+        answer = input_prompt(MESSAGES['play_again'])
+
+        match answer:
+            case ('y' | 'yes'):
+                return True
+            case ('n' | 'no'):
+                return False
+            case _:
+                print_prompt(MESSAGES['invalid_play_again'])
 
 # <============ OBJECT CONSTRUCTOR FUNCTIONS ============>
 def construct_game_data(user_name, comp_name, win_target):
@@ -154,8 +166,19 @@ def capitalize_name(name):
 
 # In case user enters short-hand move
 def convert_move(move):
-    move_dict = dict(zip(SHORT_OPTIONS, OPTIONS))
+    move_dict = dict(zip(SHORT_MOVES, MOVES))
     return move_dict[move]
+
+# Mutates game_data!
+def update_scoreboard(game_data):
+    user_name, comp_name = fetch_names(game_data)
+
+    if user_won(game_data):
+        game_data[user_name]['wins'] += 1
+    elif comp_won(game_data):
+        game_data[comp_name]['wins'] += 1
+
+    game_data['rounds'] += 1
 
 # <============ FETCH FUNCTIONS ============>
 def fetch_names(game_data):
@@ -217,26 +240,14 @@ def someone_won(game_data):
     target = fetch_target(game_data)
     return user_wins >= target or comp_wins >= target
 
-def play_again():
-    while True:
-        answer = input_prompt(MESSAGES['play_again'])
-
-        match answer:
-            case ('y' | 'yes'):
-                return True
-            case ('n' | 'no'):
-                return False
-            case _:
-                print_prompt(MESSAGES['invalid_play_again'])
-
 # <============ CALCULATION FUNCTIONS ============>
 def calculate_winner(game_data):
     user_name, comp_name = fetch_names(game_data)
     user_move, comp_move = fetch_moves(game_data)
 
-    if comp_move in MOVE_MAP[user_move]:
+    if comp_move in WINNING_CONDITIONS[user_move]:
         return user_name
-    if user_move in MOVE_MAP[comp_move]:
+    if user_move in WINNING_CONDITIONS[comp_move]:
         return comp_name
     return None
 
@@ -264,13 +275,8 @@ def play():
         game_data[user_name]['move'] = get_user_move(game_data)
         game_data[comp_name]['move'] = get_comp_move()
         game_data['winner'] = calculate_winner(game_data)
+        update_scoreboard(game_data)
 
-        if user_won(game_data):
-            game_data[user_name]['wins'] += 1
-        elif comp_won(game_data):
-            game_data[comp_name]['wins'] += 1
-
-        game_data['rounds'] += 1
         reset_screen()
         show_score_board(game_data)
         show_round_winner(game_data)
